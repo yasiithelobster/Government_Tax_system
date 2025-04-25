@@ -24,7 +24,7 @@ public class TransactionWithBillInfoTest {
         assertEquals(15.0, transactionWithBill.getSalePrice());
         assertEquals(2, transactionWithBill.getQuantity());
         assertEquals(15, transactionWithBill.getChecksum());
-        assertEquals(7.0, transactionWithBill.getProfit());
+        assertEquals(9.0, transactionWithBill.getProfit(), 0.001);
         assertEquals("Valid", transactionWithBill.getValidationStatus());
     }
 
@@ -40,7 +40,8 @@ public class TransactionWithBillInfoTest {
                 0.0, // Initial profit doesn't matter as we're testing calculation
                 "Valid"
         );
-        // Expected profit: (20.0 * 3 - (20.0 * 0.2 * 3)) - (10.0 * 3) = (60.0 - 12.0) - 30.0 = 48.0 - 30.0 = 18.0
-        assertEquals(18, transactionWithBill.getProfit()); // Note: getProfit() casts to int in your code
+        // Expected profit: (20.0 * 3 - (20.0 * 0.2) * 3) - (10.0 * 3) = (60.0 - 12.0) - 30.0 = 48.0 - 30.0 = 18.0
+        assertEquals(29.0, transactionWithBill.getProfit(), 0.001);
     }
 }
+

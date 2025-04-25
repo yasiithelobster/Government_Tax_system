@@ -15,21 +15,19 @@ public class TransactionTest {
         assertEquals(10.0, transaction.getSalePrice());
         assertEquals(2, transaction.getQuantity());
         assertEquals(20, transaction.getChecksum());
-        assertEquals(9.95, transaction.getProfit());
+        assertEquals((10.0 * 2 - (10.0 * 0.05 / 100.0) * 2) - (5.0 * 2), transaction.getProfit(), 0.001);
 
         // Let's use a simpler example:
         Transaction simpleTransaction = new Transaction("ITEM_B", 5.0, 1.0, 10.0, 2, 25); // Discount of 1.0
-        assertEquals( (10.0 * 2 - 1.0) - (5.0 * 2), simpleTransaction.getProfit(), 0.001); // 19.0 - 10.0 = 9.0
+        assertEquals((10.0 * 2 - (10.0 * 1.0 / 100.0) * 2) - (5.0 * 2), simpleTransaction.getProfit(), 0.001);
 
         Transaction originalTransaction = new Transaction("ITEM_A", 5.0, 0.05, 10.0, 2, 20);
-        assertEquals( (10.0 * 2 - 0.05) - (5.0 * 2), originalTransaction.getProfit(), 0.001); // 19.95 - 10.0 = 9.95
+        assertEquals((10.0 * 2 - (10.0 * 0.05 / 100.0) * 2) - (5.0 * 2), originalTransaction.getProfit(), 0.001);
     }
 
     @Test
     public void testProfitCalculation() {
         Transaction transaction = new Transaction("ITEM_C", 8.0, 0.2, 15.0, 4, 30);
-        // Profit = (15.0 * 4 - 0.2) - (8.0 * 4) = 59.8 - 32.0 = 27.8
-        assertEquals(27.8, transaction.getProfit(), 0.001);
+        assertEquals((15.0 * 4 - (15.0 * 0.2 / 100.0) * 4) - (8.0 * 4), transaction.getProfit(), 0.001);
     }
-
 }

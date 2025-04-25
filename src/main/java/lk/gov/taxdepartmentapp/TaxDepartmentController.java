@@ -140,7 +140,7 @@ public class TaxDepartmentController {
         }
     }
 
-    private void updateTransaction(TransactionWithBillInfo transaction) {
+    void updateTransaction(TransactionWithBillInfo transaction) {
         int index = transactionsWithBillInfo.indexOf(transaction);
         if (index == -1) {
             System.out.println("Transaction not found for editing.");
@@ -277,7 +277,7 @@ public class TaxDepartmentController {
         }
     }
 
-    private boolean containsSpecialCharacters(String text) {
+    boolean containsSpecialCharacters(String text) {
         if (text == null || text.isEmpty()) {
             return false;
         }
@@ -286,7 +286,7 @@ public class TaxDepartmentController {
         return matcher.find();
     }
 
-    private void validateTransactions() {
+    void validateTransactions() {
         int totalTransactions = transactionsWithBillInfo.size();
         int validTransactions = 0;
         int invalidTransactions = 0;
@@ -301,17 +301,17 @@ public class TaxDepartmentController {
         summaryLabel.setText("Total Transactions: " + totalTransactions + ", Valid Transactions: " + validTransactions + ", Invalid Transactions: " + invalidTransactions);
     }
 
-    private void deleteInvalidRecords() {
+    void deleteInvalidRecords() {
         transactionsWithBillInfo.removeIf(transaction -> transaction.getValidationStatus().equals("Invalid"));
         tableView.setItems(transactionsWithBillInfo);
     }
 
-    private void deleteZeroProfitRecords() {
+    void deleteZeroProfitRecords() {
         transactionsWithBillInfo.removeIf(transaction -> transaction.getProfit() == 0);
         tableView.setItems(transactionsWithBillInfo);
     }
 
-    private void calculateFinalTax() {
+    void calculateFinalTax() {
         double taxRate = Double.parseDouble(taxRateField.getText()) / 100.0;
         double totalProfitLoss = transactionsWithBillInfo.stream()
                 .mapToDouble(TransactionWithBillInfo::getProfit)
@@ -320,7 +320,7 @@ public class TaxDepartmentController {
         finalTaxLabel.setText("Final Tax: " + finalTax);
     }
 
-    private void refreshTransaction(TransactionWithBillInfo transaction) {
+    void refreshTransaction(TransactionWithBillInfo transaction) {
         int index = transactionsWithBillInfo.indexOf(transaction);
         if (index == -1) {
             System.out.println("Transaction not found for refreshing.");
@@ -349,7 +349,7 @@ public class TaxDepartmentController {
         validateTransactions();
     }
 
-    private int calculateItemChecksum(String itemCode, int quantity, double internalPrice, double discount, double salePrice) {
+    int calculateItemChecksum(String itemCode, int quantity, double internalPrice, double discount, double salePrice) {
         NumberFormat nf = new DecimalFormat("#0.00");
         JSONObject itemData = new JSONObject();
         itemData.put("item_code", itemCode);
@@ -360,7 +360,7 @@ public class TaxDepartmentController {
         return calculateStringChecksum(jsonString);
     }
 
-    private int calculateStringChecksum(String dataString) {
+    int calculateStringChecksum(String dataString) {
         int uppercaseCount = 0;
         int lowercaseCount = 0;
         int numbersDecimalsCount = 0;
