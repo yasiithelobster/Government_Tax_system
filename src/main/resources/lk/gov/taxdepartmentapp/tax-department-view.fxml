@@ -13,15 +13,16 @@
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
     </padding>
     <children>
-        <Button mnemonicParsing="false" onAction="#onImportButtonClick" text="Import Transaction File" />
+        <TextField fx:id="filePathField" promptText="Enter file path here" />
+        <Button fx:id="importPathButton" onAction="#onImportPathButtonClick" text="Import from Path" />
         <TableView fx:id="tableView" prefHeight="300.0" prefWidth="600.0" />
         <Label fx:id="summaryLabel" prefHeight="107.0" prefWidth="625.0">
          <font>
             <Font size="18.0" />
          </font></Label>
-        <Button mnemonicParsing="false" onAction="#onValidateButtonClick" text="Validate Bills" />
-        <Button mnemonicParsing="false" onAction="#onDeleteInvalidButtonClick" text="Delete Invalid Bills" />
-        <Button mnemonicParsing="false" onAction="#onDeleteZeroProfitButtonClick" text="Delete Zero Profit Bills" />
+        <Button mnemonicParsing="false" onAction="#onValidateButtonClick" text="Validate Transactions" />
+        <Button mnemonicParsing="false" onAction="#onDeleteInvalidButtonClick" text="Delete Invalid Transactions" />
+        <Button mnemonicParsing="false" onAction="#onDeleteZeroProfitButtonClick" text="Delete Zero Profit Transactions" />
         <Label text="Tax Rate (%):" />
         <TextField fx:id="taxRateField" prefHeight="26.0" prefWidth="191.0" />
         <Button mnemonicParsing="false" onAction="#onCalculateTaxButtonClick" text="Calculate Final Tax" />

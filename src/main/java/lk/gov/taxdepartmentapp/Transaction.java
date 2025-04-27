@@ -1,3 +1,6 @@
+// This is the model class for a single transaction.
+// Stores information about an individual item in a sales transaction.
+
 package lk.gov.taxdepartmentapp;
 
 public class Transaction {
@@ -9,6 +12,8 @@ public class Transaction {
     private int checksum;
     private double profit; // Changed to double
 
+
+//    Constructs a new Transaction object initializing all the core attributes of a transaction item.
     public Transaction(String itemCode, double internalPrice, double discount, double salePrice, int quantity, int checksum) {
         this.itemCode = itemCode;
         this.internalPrice = internalPrice;
@@ -43,14 +48,15 @@ public class Transaction {
         return checksum;
     }
 
-    public double getProfit() { // Changed return type to double
+    public double getProfit() {
         return profit;
     }
 
-    public double setProfit(double profit) { // Correctly calculates and returns profit
-        double discount_amount_per_item = salePrice * (discount / 100.0); // Changed 100 to 100.0
+    // Profit calculation
+    public double setProfit(double profit) {
+        double discount_amount_per_item = salePrice * (discount / 100.0);
         double discount_amount = discount_amount_per_item * quantity;
         this.profit = (salePrice * quantity - discount_amount) - (internalPrice * quantity);
-        return this.profit; // Added return this.profit
+        return this.profit;
     }
 }

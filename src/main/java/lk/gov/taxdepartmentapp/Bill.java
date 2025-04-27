@@ -12,7 +12,7 @@ import java.util.List;
 public class Bill {
     private List<Transaction> items;
     private double totalAmount;
-    private int checksum; // You might not even need this
+    private int checksum;
 
     public Bill(double totalAmount, int checksum) {
         this.items = new ArrayList<>();

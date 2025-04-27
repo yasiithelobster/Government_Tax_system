@@ -24,6 +24,13 @@ public class TransactionWithBillInfo {
         this.validationStatus = validationStatus;
     }
 
+    // Calculates the profit for the transaction item.
+    public double setProfit(double profit) {
+        double discount_amount_per_item = salePrice * (discount / 100);
+        double discount_amount = discount_amount_per_item * quantity;
+        return ((salePrice * quantity - discount_amount) - (internalPrice * quantity));
+    }
+
     // Getters and Setters for all fields
     public String getItemCode() { return itemCode; }
     public void setItemCode(String itemCode) { this.itemCode = itemCode; }
@@ -45,13 +52,6 @@ public class TransactionWithBillInfo {
 
     public String getValidationStatus() { return validationStatus; }
     public void setValidationStatus(String validationStatus) { this.validationStatus = validationStatus; }
-
-
-    public double setProfit(double profit) {
-        double discount_amount_per_item = salePrice * (discount/100);
-        double discount_amount = discount_amount_per_item * quantity;
-        return ((salePrice * quantity - discount_amount) - (internalPrice * quantity));
-    }
 
     public int getProfit() {
         return (int) setProfit(profit);
