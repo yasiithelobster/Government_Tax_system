@@ -63,6 +63,7 @@ javac src/main/*.java
 ```
 
 ## What I Learned
+	•	Building GUI applications with JavaFX
 	•	Organizing Java code into multiple classes and packages
 	•	Compiling and running Java projects from the command line
 	•	Implementing tax calculation logic and validation
